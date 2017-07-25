@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="index">
+        <ol>
+            {% for element in elements %}
+                <li class="element"><a href="/charts/{{ element.href }}">{{ element.title }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %} 

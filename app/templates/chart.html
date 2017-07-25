@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="../data/{{ city }}data.js"></script>
+
+    <div class="filter">
+        <label><b>Filters:</b></label>
+        <label>From year<input id="from_year" type="text" width="4"></label>
+        <label>To year<input id="to_year" type="text" width="4"></label>
+        <button id="filtrate" class="btn">Filtrate</button>
+    </div>
+    <div class="chart"></div>
+    <div class="chart"></div>
+    <div class="chart"></div>
+
+    <script>
+        function getUrlVars() {
+            let vars = [], hash;
+            const hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (let i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        function drawCharts() {
+            for (let i = 0; i < data_of_weather.length; i++) {
+                const data_for_char = data_of_weather[i];
+                const data = google.visualization.arrayToDataTable(filtrate(data_for_char.table));
+
+                const options = {
+                    title: data_for_char.title,
+                    curveType: 'function',
+                    legend: {position: 'bottom'}
+                };
+
+                const chart = new google.visualization.LineChart(document.getElementsByClassName('chart')[i]);
+
+                chart.draw(data, options);
+            }
+        }
+
+        function filtrate(table) {
+            const parameters = getUrlVars();
+            const from_year = parseInt(parameters.from_year || '0');
+            const to_year = parseInt(parameters.to_year || '9999');
+
+            const filtrated_table = [];
+            filtrated_table.push(table[0]);
+            for (let i = 1; i < table.length; i++) {
+                const year = parseInt(table[i][0].split('/')[1]);
+
+                if (year >= from_year && year <= to_year) {
+                    filtrated_table.push(table[i])
+                }
+            }
+            return filtrated_table
+        }
+
+
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        document.getElementById('from_year').value = localStorage.getItem('from_year') || '1990';
+        document.getElementById('to_year').value = localStorage.getItem('to_year') || '2020';
+
+        document.getElementById('filtrate').onclick = function () {
+            localStorage.setItem('from_year', document.getElementById('from_year').value);
+            localStorage.setItem('to_year', document.getElementById('to_year').value);
+            window.location.href = window.location.href.split('?')[0] + '?' +
+                'from_year=' + document.getElementById('from_year').value + '&' +
+                'to_year=' + document.getElementById('to_year').value;
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,24 @@
+<html>
+<head>
+    {% if title %}
+        <title>{{ title }} - Weather history</title>
+    {% else %}
+        <title>Weather history</title>
+    {% endif %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="{{ url_for('.static', filename='css/base.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="header-bar"><p>Weather history: <a href="/index">Home</a></p></div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>
