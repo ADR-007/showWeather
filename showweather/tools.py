@@ -14,4 +14,10 @@ def parse_fixed_width(lines: List[str]):
 
 
 def to_float(string_list: Iterable[str]) -> List[float]:
-    return [None if e in {'---', ''} else float(e.split()[-1]) for e in string_list]
+    floats = []
+    for element in string_list:
+        try:
+            floats.append(float(element))
+        except ValueError:
+            floats.append(None)
+    return floats
