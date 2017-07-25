@@ -1,2 +1,1 @@
-web: gunicorn runp-heroku:app
-worker: python showweather/run.py
+web: gunicorn -b 0.0.0.0:$PORT runp-heroku:app
