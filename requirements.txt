@@ -13,7 +13,7 @@ Flask-Mail
 Flask-OpenID
 Flask-SQLAlchemy
 Flask-WTF
-git+git://github.com/miguelgrinberg/Flask-WhooshAlchemy
+
 Jinja2
 MySQL-python
 psycopg2
