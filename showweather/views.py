@@ -6,7 +6,7 @@ import lxml.html as html
 import requests
 from flask import render_template, abort
 
-from app import app
+from showweather import app
 from tools import parse_fixed_width, to_float
 
 STATION_DATA_INDEX_URL = 'https://data.gov.uk/dataset/historic-monthly-meteorological-station-data'
