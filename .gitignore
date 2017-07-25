@@ -97,3 +97,4 @@ ENV/
 
 # Temporal folder
 tmp/
+.idea/
