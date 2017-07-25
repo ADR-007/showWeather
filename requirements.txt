@@ -11,13 +11,13 @@ Flask-Babel
 Flask-Login
 Flask-Mail
 Flask-OpenID
-Flask-SQLAlchemy
+
 Flask-WTF
 
 Jinja2
-MySQL-python
+
 psycopg2
-SQLAlchemy
+
 Tempita
 WTForms
 Werkzeug
@@ -31,4 +31,3 @@ gunicorn
 python-openid
 pytz
 speaklater
-sqlalchemy-migrate
