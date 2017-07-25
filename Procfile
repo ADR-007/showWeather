@@ -1,1 +1,1 @@
-python showweather/run.py
+web: python showweather/run.py
