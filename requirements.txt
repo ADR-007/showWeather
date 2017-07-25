@@ -1,5 +1,6 @@
 requests
 lxml
 flask
-cssselectgunicorn
+cssselect
+
 gunicorn
