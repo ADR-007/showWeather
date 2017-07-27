@@ -1,3 +1,3 @@
 How to use:
 1) Install all requirements defined in requirements.txt
-2) Run app/run.py with Python >= 3.6
+2) Run showweather/run.py with Python >= 3.6
